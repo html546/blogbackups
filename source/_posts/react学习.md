@@ -1,0 +1,131 @@
+---
+title: react学习
+date: 2019-03-29 10:32:32
+tags:
+    - react
+categories: react学习
+---
+#### Redux核心API
+
+1. 引入必要组件
+
+```javascript
+import {createStore,combineReducers} from 'redux';
+```
+
+2. 生成store:
+```javascript
+const store = createStore(reducer,state初始状态[可选]);
+```
+
+3. 取得当前时刻的state:
+```javascript
+const state = store.getState();
+```
+
+4. 发出action
+```javascript
+store.dispatch({
+    type:'ADD_TODO',
+    payload:'learn Redux'
+})
+```
+
+5. 设置监听函数(当store改变时会自动调用回调函数)
+```javascript
+store.subscribe(callback)
+```
+
+#### Reducer
+##### 纯函数:同样的输入,必定得到同样的输出。
+
+##### 约束条件
+
+1. 不得改写参数
+2. 不能调用系统I/O的API
+3. 不能调用Date.now()或者Math.random()等不纯的方法,因为每次会得到不一样的结果
+
+#### redux reducer操作
+
+1. Reducer函数里面不能改变state,必须返回一个全新的对象
+
+```javascript
+// State是一个对象
+function reducer(state,action){
+    return Object.assign({},state,{thingToChange});
+    // 或者
+    return {...state,...newState};
+}
+// State是一个数组
+function reducer(state,action){
+    return [...state,newItem];
+}
+```
+
+#### Reducer写法一:
+
+```javascript
+const chatReducer = (state=defaultState,action={})=>{
+    const {type,payload} = action;
+    switch(type){
+        case "ADD_CHAT":
+            return Object.assign({},state,{
+                chatLog:state.chatLog.concat(payload)
+            });
+        default:
+            return state;
+    }
+}
+```
+
+#### Reducer写法二
+```javascript
+const reducer = combineReducers({
+    a:functionA,
+    b:functionB,
+    c:functionC
+})
+```
+
+#### Redux异步流
+
+1. redux-thunk:
+    1. store.dispatch参数可以是一个function
+
+2. 使用方法
+   1. 引入:
+   ```javascript
+        import thunk from 'redux-thunk';
+   ```
+
+   2. 加入中间件
+   ```javascript
+        const store = createStore(fetchReducer,applyMiddleware(thunk));
+   ``` 
+
+#### Redux生命周期
+- 生命周期整体流程
+
+1. 实例化
+
+```javascript
+    getDefaultProps 取得默认属性(ES6的写法中被删除)
+    getInitialState 初始化状态(ES6的写法中被删除)
+    componentWillMount 即将进入dom
+    Render 组件渲染
+    componentDidMount 已经进入dom
+```
+
+2. 存在期(参照数据更新过程)
+    - 数据更新过程
+      - 触发时机: this.setState更新状态
+      1. componentWillReceiveProps 父组件发生render的时候子组件就会调用
+      2. showldComponentUpdate 判断是否需要重新渲染组件
+      3. componentWillUpdate 组件即将重新渲染
+      4. Render 组件渲染
+      5. componentDidUpdate 组件重新渲染完成
+
+3. 销毁期
+```javascript
+    componentWillUnmount
+```
