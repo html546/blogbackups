@@ -50,3 +50,12 @@ categories: react学习
             {items}
             </ReactCSSTransitionGroup>
 ```
+3. 写动画用的css(红色的字是上一页中的transitionName)
+
+```javascript
+    .example-enter 进入动画的七点
+    .example-enter-active 进入动画的终点
+
+    .example-leave 离开动画的起点
+    .example-leave-active 离开动画的终点
+```
