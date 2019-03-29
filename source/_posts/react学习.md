@@ -8,32 +8,31 @@ categories: react学习
 #### Redux核心API
 
 1. 引入必要组件
-
 ```javascript
-import {createStore,combineReducers} from 'redux';
+    import {createStore,combineReducers} from 'redux';
 ```
 
 2. 生成store:
 ```javascript
-const store = createStore(reducer,state初始状态[可选]);
+    const store = createStore(reducer,state初始状态[可选]);
 ```
 
 3. 取得当前时刻的state:
 ```javascript
-const state = store.getState();
+    const state = store.getState();
 ```
 
 4. 发出action
 ```javascript
-store.dispatch({
-    type:'ADD_TODO',
-    payload:'learn Redux'
-})
+    store.dispatch({
+        type:'ADD_TODO',
+        payload:'learn Redux'
+    })
 ```
 
 5. 设置监听函数(当store改变时会自动调用回调函数)
 ```javascript
-store.subscribe(callback)
+    store.subscribe(callback)
 ```
 
 #### Reducer
@@ -92,40 +91,14 @@ const reducer = combineReducers({
 1. redux-thunk:
     1. store.dispatch参数可以是一个function
 
-2. 使用方法
+1. 使用方法
    1. 引入:
-   ```javascript
-        import thunk from 'redux-thunk';
-   ```
-
-   2. 加入中间件
-   ```javascript
-        const store = createStore(fetchReducer,applyMiddleware(thunk));
-   ``` 
-
-#### Redux生命周期
-- 生命周期整体流程
-
-1. 实例化
-
-```javascript
-    getDefaultProps 取得默认属性(ES6的写法中被删除)
-    getInitialState 初始化状态(ES6的写法中被删除)
-    componentWillMount 即将进入dom
-    Render 组件渲染
-    componentDidMount 已经进入dom
 ```
-
-2. 存在期(参照数据更新过程)
-    - 数据更新过程
-      - 触发时机: this.setState更新状态
-      1. componentWillReceiveProps 父组件发生render的时候子组件就会调用
-      2. showldComponentUpdate 判断是否需要重新渲染组件
-      3. componentWillUpdate 组件即将重新渲染
-      4. Render 组件渲染
-      5. componentDidUpdate 组件重新渲染完成
-
-3. 销毁期
-```javascript
-    componentWillUnmount
+  javascript
+  import thunk from 'redux-thunk'
 ```
+   2. 加入中间件:
+```
+  javascript
+  const store = createStore(fetchReducer,applyMiddleware(thunk))
+``` 
