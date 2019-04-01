@@ -5,6 +5,22 @@ tags:
 	- React
 categories: react学习
 ---
+#### Redux三大原则
+
+1. 单一数据源
+
+
+   - 整个应用的state被储存在一棵object tree中，并且这个object tree只存在于唯一一个store中。
+
+
+2. State是只读的
+   
+   - 唯一改变state的方法就是触发action，action是一个用于描述已发生事件的普通对象。
+
+3. 使用纯函数来执行修改
+
+   - 为了描述action如何改变state tree ，你需要编写reducers。
+
 #### Redux生命周期
 - 生命周期整体流程
 
