@@ -36,3 +36,9 @@ categories: react学习
 1. Store中包含应用所有的数据
 2. Store是应用中唯一的数据发生变更的地方
 3. Store中没有赋值接口---所有数据变更都是由dispatcher发送store,新的数据随着Store触发的change事件传回view.Store对外只暴露getter,不允许提供setter!!禁止在任何地方直接操作Store.
+
+##### view
+>view(UI组件) ui-component职责单一只允许调用action触发事件,数据从由上层容器通过属性传递过来。
+
+##### actionCreator
+>actionCreators是相对独立的,它作为语法上的辅助函数以action的形式使得dispatcher传递数据更为便利。
